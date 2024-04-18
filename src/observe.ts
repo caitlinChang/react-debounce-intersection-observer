@@ -1,4 +1,8 @@
-import type { ObserverInstanceCallback } from './index';
+import createDebounceController, { formatStartOption } from './debounce';
+import type {
+  IntersectionDebounceOptions,
+  ObserverInstanceCallback,
+} from './index';
 
 const observerMap = new Map<
   string,
@@ -53,11 +57,13 @@ export function optionsToId(options: IntersectionObserverInit) {
     .toString();
 }
 
-function createObserver(options: IntersectionObserverInit) {
+function createObserver(
+  options: IntersectionObserverInit & IntersectionDebounceOptions,
+) {
   // Create a unique ID for this observer instance, based on the root, root margin and threshold.
   let id = optionsToId(options);
   let instance = observerMap.get(id);
-
+  const getStart = formatStartOption(options?.debounceOptions?.start);
   if (!instance) {
     // Create a map of elements this observer is going to observe. Each element has a list of callbacks that should be triggered, once it comes into view.
     const elements = new Map<Element, Array<ObserverInstanceCallback>>();
@@ -78,10 +84,23 @@ function createObserver(options: IntersectionObserverInit) {
           entry.isVisible = inView;
         }
 
-        elements.get(entry.target)?.forEach((callback) => {
-          callback(inView, entry);
-        });
+        if (getStart()) {
+          createDebounceController(options).pushCallback(inView, entry, () => {
+            elements.get(entry.target)?.forEach((callback) => {
+              callback(inView, entry);
+            });
+          });
+        } else {
+          createDebounceController(options)?.destory();
+          elements.get(entry.target)?.forEach((callback) => {
+            callback(inView, entry);
+          });
+        }
       });
+
+      if (getStart()) {
+        createDebounceController(options).run();
+      }
     }, options);
 
     // Ensure we have a valid thresholds array. If not, use the threshold from the options

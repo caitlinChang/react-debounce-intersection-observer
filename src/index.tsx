@@ -16,6 +16,14 @@ interface RenderProps {
   ref: React.RefObject<any> | ((node?: Element | null) => void);
 }
 
+export interface IntersectionDebounceOptions {
+  debounceOptions?: {
+    wait?: number; // default 100
+    renderCount?: number; // default all
+    start?: boolean | (() => boolean); // Whether to start debounce
+  };
+}
+
 export interface IntersectionOptions extends IntersectionObserverInit {
   /** The IntersectionObserver interface's read-only `root` property identifies the Element or Document whose bounds are treated as the bounding box of the viewport for the element which is the observer's target. If the `root` is null, then the bounds of the actual document viewport are used.*/
   root?: Element | null;

@@ -1,6 +1,6 @@
 {
-  "name": "react-intersection-observer",
-  "version": "8.26.1",
+  "name": "react-debounce-intersection-observer",
+  "version": "0.0.1",
   "description": "Monitor if a component is inside the viewport, using IntersectionObserver API",
   "source": "src/index.tsx",
   "main": "dist/react-intersection-observer.js",
@@ -8,7 +8,7 @@
   "esmodule": "dist/react-intersection-observer.esm.js",
   "unpkg": "dist/react-intersection-observer.umd.js",
   "typings": "dist/index.d.ts",
-  "author": "Daniel Schmidt",
+  "author": "caitlin chang",
   "sideEffects": false,
   "repository": {
     "type": "git",
@@ -144,7 +144,8 @@
     }
   ],
   "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0"
+    "react": "^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -191,6 +192,7 @@
     "microbundle": "^0.14.2",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.12",
+    "@types/lodash": "^4.17.0",
     "prettier": "^2.6.2",
     "prettier-plugin-pkg": "^0.13.0",
     "prettier-plugin-tailwindcss": "^0.1.8",

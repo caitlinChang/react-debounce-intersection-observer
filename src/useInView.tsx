@@ -1,5 +1,9 @@
 import * as React from 'react';
-import type { InViewHookResponse, IntersectionOptions } from './index';
+import type {
+  InViewHookResponse,
+  IntersectionDebounceOptions,
+  IntersectionOptions,
+} from './index';
 import { observe } from './observe';
 
 type State = {
@@ -43,7 +47,8 @@ export function useInView({
   skip,
   initialInView,
   fallbackInView,
-}: IntersectionOptions = {}): InViewHookResponse {
+  debounceOptions,
+}: IntersectionOptions & IntersectionDebounceOptions = {}): InViewHookResponse {
   const unobserve = React.useRef<Function>();
   const [state, setState] = React.useState<State>({
     inView: !!initialInView,
@@ -78,6 +83,7 @@ export function useInView({
             trackVisibility,
             // @ts-ignore
             delay,
+            debounceOptions,
           },
           fallbackInView,
         );
