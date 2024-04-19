@@ -1,10 +1,5 @@
 # react-debounce-intersection-observer
 
-[![Version Badge][npm-version-svg]][package-url]
-[![GZipped size][npm-minzip-svg]][bundlephobia-url]
-[![Test][test-image]][test-url] [![License][license-image]][license-url]
-[![Downloads][downloads-image]][downloads-url]
-
 Fork 自 `react-intersection-observer@9.0.0`, 有完整的
 `react-intersection-observer`所提供的功能，在其基础之上增加了 debounce 能力，主
 要用于处理监听的目标元素非常多的情况；
@@ -18,18 +13,23 @@ Fork 自 `react-intersection-observer@9.0.0`, 有完整的
 
 ## Features
 
-- [其他](https://github.com/thebuilder/react-intersection-observer)
-- 在 hooks 用法中，支持设置 callback 的 debounce 触发时间
-- 支持控制 callback 每批执行的数量；
-- 支持通过开关控制 debounce 是否开启，不开启就和 `react-intersection-observer`
-  的逻辑一致
-- inView 为 false 的 callback 放在 `requestIdleCallback` 中执行，因为大多数情况
-  下不在可视区域的元素中的逻辑是不重要的，要优先执行可视区域内的；
-- debounce 用法当前仅支持 threshold 为单个数字的用法；
+✅ [其他](https://github.com/thebuilder/react-intersection-observer)
 
-**待支持**
+✅ 在 hooks 用法中，支持设置 callback 的 debounce 触发时间
+
+✅ 支持控制 callback 每批执行的数量；
+
+✅ 支持通过开关控制 debounce 是否开启，不开启就和 `react-intersection-observer`
+的逻辑一致；
+
+✅ inView 为 false 的 callback 放在 `requestIdleCallback` 中执行，因为大多数情况
+下不在可视区域的元素中的逻辑是不重要的，要优先执行可视区域内的；
+
+✅ debounce 用法当前仅支持 threshold 为单个数字的用法；
 
 ⬜️ 支持 threshold 为数字数组的情况；
+
+⬜️ 为 `<InView>` 组件添加 debounce 功能
 
 ## Installation
 
