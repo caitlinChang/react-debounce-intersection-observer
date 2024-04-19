@@ -1,6 +1,6 @@
 {
   "name": "react-debounce-intersection-observer",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "description": "Monitor if a component is inside the viewport, using IntersectionObserver API",
   "source": "src/index.tsx",
   "main": "dist/react-intersection-observer.js",
