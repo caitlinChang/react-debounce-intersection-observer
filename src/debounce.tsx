@@ -34,7 +34,6 @@ class DebounceController {
     this.run = debounce(this.execute, options?.debounceOptions?.wait || 0);
   }
   private execute() {
-    // console.log('触发debounce函数----', executeMap.size, rdlExecuteMap.size)
     this.rafId && cancelAnimationFrame(this.rafId);
     this.rdlId && cancelIdleCallback(this.rdlId);
     this.renderController(this.executeMap, 'raf', () =>
@@ -55,7 +54,10 @@ class DebounceController {
       callback?.();
       return;
     }
-
+    if (map.size === 0) {
+      callback?.();
+      return;
+    }
     for (let i = 0; i < this.renderCount && i < map.size; i++) {
       const lastEntry = Array.from(map).pop();
       if (!lastEntry) {
@@ -99,13 +101,19 @@ class DebounceController {
     fn: () => void,
   ) {
     if (inView) {
-      this.executeMap.delete(entry.target);
-      this.executeMap.set(entry.target, fn);
-      this.rdlExecuteMap.delete(entry.target);
+      if (this.rdlExecuteMap.has(entry.target)) {
+        this.rdlExecuteMap.delete(entry.target);
+      } else {
+        this.executeMap.delete(entry.target);
+        this.executeMap.set(entry.target, fn);
+      }
     } else {
-      this.rdlExecuteMap.delete(entry.target);
-      this.rdlExecuteMap.set(entry.target, fn);
-      this.executeMap.delete(entry.target);
+      if (this.executeMap.has(entry.target)) {
+        this.executeMap.delete(entry.target);
+      } else {
+        this.rdlExecuteMap.delete(entry.target);
+        this.rdlExecuteMap.set(entry.target, fn);
+      }
     }
   }
 }

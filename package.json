@@ -1,6 +1,6 @@
 {
   "name": "react-debounce-intersection-observer",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "Monitor if a component is inside the viewport, using IntersectionObserver API",
   "source": "src/index.tsx",
   "main": "dist/react-intersection-observer.js",
@@ -128,19 +128,19 @@
       "path": "dist/react-intersection-observer.m.js",
       "name": "InView",
       "import": "{ InView }",
-      "limit": "1.8 kB"
+      "limit": "2.5 kB"
     },
     {
       "path": "dist/react-intersection-observer.m.js",
       "name": "useInView",
       "import": "{ useInView }",
-      "limit": "1.3 kB"
+      "limit": "2 kB"
     },
     {
       "path": "dist/react-intersection-observer.m.js",
       "name": "observe",
       "import": "{ observe }",
-      "limit": "1 kB"
+      "limit": "2 kB"
     }
   ],
   "peerDependencies": {

@@ -85,6 +85,7 @@ function createObserver(
         }
 
         if (getStart()) {
+          createDebounceController(options).interrupt();
           createDebounceController(options).pushCallback(inView, entry, () => {
             elements.get(entry.target)?.forEach((callback) => {
               callback(inView, entry);
